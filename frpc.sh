@@ -9,7 +9,7 @@ wget -P ${WORK_PATH} https://github.com/fatedier/frp/releases/download/v${FRP_VE
 tar -zxvf frp_${FRP_VERSION}_linux_amd64.tar.gz && \
 cd frp_${FRP_VERSION}_linux_amd64 && \
 mv frpc /usr/bin && \
-mv frpc.ini /etc/frp/ && \
+if [ ! -f "/etc/frp/frpc.ini" ]; then mv frpc.ini /etc/frp/; fi && \
 mv systemd/frpc.service /lib/systemd/system && \
 systemctl daemon-reload && \
 sudo systemctl start frpc && \
